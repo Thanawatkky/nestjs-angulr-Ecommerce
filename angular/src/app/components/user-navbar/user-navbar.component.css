@@ -1,0 +1,16 @@
+div.mega-box{ 
+    visibility: hidden;
+}
+li.nav-link:hover > div.mega-box{
+    visibility: visible;
+    transition: all 0.5s ease;
+}
+ul.nav-menu > li {
+    padding: 8px 0;
+}
+/* 
+div.mega-box:hover div.mega-box{
+
+    visibility: visible;
+    transition: all 0.3s ease;
+} */

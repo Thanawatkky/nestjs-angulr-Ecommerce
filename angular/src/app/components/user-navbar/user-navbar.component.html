@@ -1,0 +1,61 @@
+<!-- component -->
+<nav class="bg-white shadow">
+    <div class="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
+      <div class="flex justify-between items-center">
+        <div>
+          <a class="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700" href="#">Under World <small  class="text-sm text-gray-500">STOR</small></a>
+        </div>
+  
+        <!-- Mobile menu button -->
+        <div class="flex md:hidden">
+          <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" aria-label="toggle menu">
+            <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+              <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+  
+      <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+      <div class="md:flex items-center nav-content">
+        <ul class="flex flex-col md:flex-row md:mx-6 nav-menu">
+          <li><a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" href="/user">Home</a></li>
+          <li class="nav-link">
+            <a class="nav-category my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" href="/user/category">Category</a>
+            <div class="mega-box bg-emerald-600 bg-opacity-90 border top-12 shadow-md absolute ps-6  sm:hidden py-12 md:flex w-full  left-0">
+              <div class="content text-white mx-auto opacity-100 ">
+                <ul class="ms-6 grid lg:ms-36 xl:grid-cols-12 md:grid-cols-8 gap-8 mx-auto" >
+                  @for (item of items; track $index) {
+                    <li><a href="user/category/{{item.id}}" class=" text-center px-3 py-2 hover:bg-gray-50 hover:text-black rounded-md">{{item.c_name  }}</a></li>
+                  }
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li><a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" href="/user/history">History</a></li>        </ul>
+  
+        <div class="flex justify-center md:block">
+          <a class="relative text-gray-700 hover:text-gray-600" href="/user/shopping_cart">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+  
+            <span class="absolute top-0 left-0 rounded-full bg-indigo-500 text-white p-1 text-xs"></span>
+          </a>
+        </div>
+        <div class=" ms-36 flex justify-end md:block">
+          <button role="button" (click)="Logout()"  class=" text-gray-700 hover:text-gray-600">
+            Logout
+  
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <div class="showCategory border w-[100%] h-100 absolute z-10 justify-center shadow-md  me-12 px-6 bg-white py-12" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" [style]="{'opacity': showCate ? '1' : '0'}" [style]="{'display': showCate ? 'block' : 'none'}">
+    <ul class="ms-6 grid grid-cols-8 gap-8 mx-auto " >
+            <li><a href="" class="hover:text-purple-600">Apple</a></li>
+            <li>ZTE</li>
+    </ul>
+</div> -->

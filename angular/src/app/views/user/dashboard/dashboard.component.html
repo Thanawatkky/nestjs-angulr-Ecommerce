@@ -1,0 +1,87 @@
+<!-- component -->
+<!-- component -->
+<div class="py-16 bg-gray-100 ">
+    <div  class="container m-auto px-6 space-y-8 text-gray-500 md:px-12 lg:px-20">
+        <div class="justify-center text-center gap-6 md:text-left md:flex lg:items-center  lg:gap-16">
+            <div class="order-last mb-6 space-y-6 md:mb-0 md:w-6/12 lg:w-6/12">
+                <h1 class="text-4xl text-gray-700 font-bold md:text-5xl">Buy now and benefit up to <span class="text-red-500">30% off</span></h1>
+                <p class="text-lg">Be part of millions people around the world using tailus in modern User Interfaces.</p>
+                <div class="flex flex-row-reverse flex-wrap justify-center gap-4 md:gap-6 md:justify-end">
+                    <button type="button" title="Start buying" class="w-full py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-red-600 active:bg-gray-700 focus:bg-gray-600 sm:w-max">
+                        <span class="block text-white font-semibold ">
+                            Start buying
+                        </span>
+                    </button>
+                    <button type="button" title="more about" class="w-full order-first py-3 px-6 text-center rounded-xl bg-gray-100 transition hover:bg-gray-200 active:bg-gray-300 focus:bg-gray-200 sm:w-max">
+                        <span class="block text-gray-600 font-semibold">
+                            More about
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-5 grid-rows-4 gap-4 md:w-5/12 lg:w-6/12">
+                <div class="col-span-2 row-span-4">
+                    <img src="https://tailus.io/sources/blocks/ecommerce-site/preview/images/products/kushagra.webp" class="rounded-full" width="640" height="960" alt="shoes" loading="lazy">
+                </div>
+                <div class="col-span-2 row-span-2">
+                    <img src="https://tailus.io/sources/blocks/ecommerce-site/preview/images/products/iman.webp" class="w-full h-full object-cover object-top rounded-xl" width="640" height="640" alt="shoe" loading="lazy">
+                </div>
+                <div class="col-span-3 row-span-3">
+                    <img src="https://tailus.io/sources/blocks/ecommerce-site/preview/images/products/daniel.webp" class="w-full h-full object-cover object-top rounded-xl" width="640" height="427" alt="shoes" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-white">
+    <div class="py-16 sm:py-24 lg:mx-auto lg:max-w-7xl lg:px-8">
+      <div class="flex items-center justify-between px-4 sm:px-6 lg:px-0">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Trending products</h2>
+        <a href="/user/All" class="hidden text-sm font-semibold text-teal-600 hover:text-cyan-500 sm:block">
+          See everything
+          <span aria-hidden="true"> &rarr;</span>
+        </a>
+      </div>
+  
+      <div class="relative mt-8">
+        <div class="relative -mb-6 w-full overflow-x-auto pb-6">
+          <ul role="list" class="mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0">
+            @for (res of product; track $index) {
+              @if ($index+1 <= 4) {
+            <li class="inline-flex w-64 flex-col text-center lg:w-auto">
+              <div class="group relative">
+                <div class="aspect-h-1 aspect-w-1 w-full max-w-24: overflow-hidden rounded-md bg-gray-200">
+                  <img ngSrc="{{ res.pro_img }}" disableOptimizedSrcset width="400" class="block-img" height="150" priority>
+                </div>
+                <div class="mt-6">
+                  <p class="text-sm text-gray-500">{{ res.category.c_name }}</p>
+                  <h3 class="mt-1 font-semibold text-gray-900">
+                    <a href="/user/product_details/{{ res.id }}">
+                      <span class="absolute inset-0"></span>
+                      {{ res.pro_name }}
+                    </a>
+                  </h3>
+                  @if(res.pro_sale !== 0) {
+                    <del class="text-red-500"><p class="mt-1 text-red-500">฿{{ res.pro_price }}</p></del>
+                    <p class="mt-1 text-gray-900">฿ {{ sum_sale(res.pro_price, res.pro_sale) }}</p>      
+                  }@else {
+                    <p class="mt-1 text-gray-900">฿{{ res.pro_price }}</p>
+                  }
+                </div>
+              </div>
+            </li>
+                }
+              }
+          </ul>
+        </div>
+      </div>
+  
+      <div class="mt-12 flex px-4 sm:hidden">
+        <a href="/user/All" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+          See everything
+          <span aria-hidden="true"> &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>

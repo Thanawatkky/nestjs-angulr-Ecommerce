@@ -1,0 +1,86 @@
+
+<div class="bg-gray-100 py-16">
+    <div class="container mx-auto px-4">
+        @if (!product || product.length === 0) {
+            @if(data.length > 0) {
+                 @for (item of data; track $index) {
+                    @if (getProductsByCategory(item.id).length > 0) {
+                <h2 class="text-3xl font-bold text-black mb-8">{{ item.c_name }}</h2>
+                    }
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    @for (data of product_cate; track $index) {
+                        @if(item.id === data.category.id) {
+
+                        
+                      <div class="bg-white rounded-lg shadow-lg p-8 ">
+                          <div class="relative overflow-hidden content">
+                              <div style="height: 350px;">
+                                <img class="object-cover w-full h-full scale-75" ngSrc="{{ data.pro_img }}" disableOptimizedSrcset width="300" height="700" alt="Product" priority>
+            
+                              </div>
+                              <div class="hoverblackdrop absolute inset-0 bg-black opacity-40"></div>
+                              <div class="absolute inset-0 flex items-center justify-center divImg">
+                                  <button id="btn-view" class="bg-white  text-gray-900 py-2 px-6 rounded-full font-bold hover:bg-gray-300 transform motion-safe:hover:scale-110" (click)="GotoDetail(data.id)">View Product</button>
+                              </div>
+                          </div>
+                          <h3 class="text-xl font-bold text-gray-900 mt-4">{{ data.pro_name }}</h3>
+                          <p class="text-gray-500 text-sm mt-2">{{ data.pro_detail }}</p>
+                          <div class="flex items-center justify-between mt-4">
+                              <span class="text-gray-900 font-bold text-lg">@if(data.pro_sale !== 0) {
+                                  <del class="text-red-500 text-sm">฿ {{ data.pro_price }}</del>
+                                  <br>
+                                  ฿ {{ sum_sale(data.pro_price, data.pro_sale) }}
+                              }@else {
+                                ฿ {{ sum_sale(data.pro_price, data.pro_sale) }}
+                              }
+                              </span>
+                              <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 transform motion-safe:focus:scale-75" (click)="add_cart(data.id)">Add to Cart</button>
+                          </div>
+                      </div>
+                    
+                    }
+                    }
+                </div>
+            }
+        }@else {
+            <h3 class="text-center text-xl">Product Not Found!</h3>
+        }
+    }@else {
+        <h2 class="text-3xl font-bold text-black mb-8">Introducing Our Latest Product</h2>
+    }
+</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          @for (data of product; track $index) {
+            <div class="bg-white rounded-lg shadow-lg p-8 ">
+                <div class="relative overflow-hidden content">
+                    <div style="height: 350px;">
+                      <img class="object-cover w-full h-full scale-75" ngSrc="{{ data.pro_img }}" disableOptimizedSrcset width="300" height="700" alt="Product" priority>
+  
+                    </div>
+                    <div class="hoverblackdrop absolute inset-0 bg-black opacity-40"></div>
+                    <div class="absolute inset-0 flex items-center justify-center divImg">
+                        <button id="btn-view" class="bg-white  text-gray-900 py-2 px-6 rounded-full font-bold hover:bg-gray-300 transform motion-safe:hover:scale-110" (click)="GotoDetail(data.id)">View Product</button>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mt-4">{{ data.pro_name }}</h3>
+                <p class="text-gray-500 text-sm mt-2">{{ data.pro_detail }}</p>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-gray-900 font-bold text-lg">@if(data.pro_sale !== 0) {
+                        <del class="text-red-500 text-sm">฿ {{ data.pro_price }}</del>
+                        <br>
+                        ฿ {{ sum_sale(data.pro_price, data.pro_sale) }}
+                    }@else {
+                      ฿ {{ sum_sale(data.pro_price, data.pro_sale) }}
+                    }
+                    </span>
+                    <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 transform motion-safe:focus:scale-75" (click)="add_cart(data.id)">Add to Cart</button>
+                </div>
+            </div>
+          }
+            
+        </div>
+  
+    </div>
+    

@@ -1,0 +1,34 @@
+<!-- component -->
+<section class="text-gray-700 body-font overflow-hidden bg-white">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="lg:w-4/5 mx-auto flex flex-wrap">
+        <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" ngSrc="{{ data.pro_img }}" disableOptimizedSrcset  width="400" height="200" priority>
+        <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+          <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ data.category.c_name }}</h2>
+          <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ data.pro_name }}</h1>
+          
+          <p class="leading-relaxed">{{ data.pro_detail }}</p>
+          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
+            
+           
+          </div>
+          <div class="flex">
+            @if(data.pro_sale !== 0) {
+              <del class="text-red-500"><span class="title-font font-medium text-lg text-red-500">฿ {{ data.pro_price }}</span></del>
+              <span class="title-font font-medium text-2xl text-gray-900 ml-4">฿ {{ sum_sale(data.pro_price, data.pro_sale) }}</span>
+
+            }@else {
+              <span class="title-font font-medium text-2xl text-gray-900 ml-4">฿ {{ data.pro_price - ((data.pro_price * data.pro_sale)/100) }}</span>
+            }
+            <button (click)="add_cart(data.id)" class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+              </svg>
+              Add to cart
+            </button>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

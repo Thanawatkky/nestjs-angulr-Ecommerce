@@ -1,0 +1,73 @@
+
+  <div class="flex flex-col drop-shadow-lg ml-80 mr-24 mt-10  ">
+<!-- component -->
+<div class=" p-6 flex items-center justify-center">
+    <div class="container max-w-screen-lg mx-auto">
+      <div>
+
+        <div class="bg-white rounded shadow-lg  px-4 md:p-8 mb-6">
+          
+                <h1 class="text-center text-2xl pb-5"> {{title}} </h1>
+                <form (ngSubmit)="addProduct(frm_product.value)" #frm_product="ngForm" method="post"  enctype="multipart/form-data">
+            <div class="lg:col-span-2">
+              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                <div class="md:col-span-5">
+                  <label for="pro_name">ชื่อสินค้า</label>
+                  <input type="text" name="pro_name" id="pro_name" ngModel   class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Product Name" />
+                </div>
+  
+                <div class="md:col-span-5">
+                  <label for="pro_detail">รายละเอียด</label>
+                  <input type="text" name="pro_detail" id="pro_detail" ngModel  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Product Details" />
+                </div>
+  
+                <div class="md:col-span-5">
+                  <label for="pro_price">ราคา</label>
+                  <input type="number" name="pro_price" id="pro_price" ngModel   class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Product Prices" />
+                </div>
+                
+  
+                <div class="md:col-span-2">
+                  <label for="category">หมวดหมู่สินค้า</label>
+                  <select id="category" ngModel  name="category" class="bg-gray-50 border border-gray-200  text-sm rounded-lg focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 bg-transparent  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected disabled value="">Choose a category</option>
+                    @for (result of category; track $index) {
+                    <option value="{{ result.id }}">{{ result.c_name }}</option>
+                    }
+                </select>               
+               </div>
+                <div class="md:col-span-3">
+                  <label for="pro_price">รูปภาพ</label>
+                  <input type="file" ngModel id="pro_img" (change)="onFileSelected($event)" [ngModelOptions]="{standalone: true}"  class=" w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-primary-500 file:py-2.5 file:px-4 file:text-sm hover:file:bg-primary-700 focus:outline-none " placeholder="Please Enter confirm password ">
+                </div>
+                <div class="md:col-span-1">
+                  <label for="pro_qty">จำนวน</label>
+                  <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                    <input type="number" name="pro_qty" id="pro_qty" ngModel  placeholder="Product Quantities" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"/>
+                  </div>
+                </div>
+  
+                
+                <div class="md:col-span-2">
+                  <label for="pro_sale">ส่วนลด</label>
+                  <input type="number" name="pro_sale" id="pro_sale" ngModel  class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Product Sale" />
+                </div>
+  
+             
+              
+        
+                <div class="md:col-span-5 text-right">
+                  <div class="inline-flex items-end">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+    </div>
+  </div>
+  </div>
+  

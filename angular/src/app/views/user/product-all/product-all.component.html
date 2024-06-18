@@ -1,0 +1,111 @@
+
+
+<div class="bg-gray-100 py-16">
+  <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-black mb-8">Introducing Our Latest Product</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        @for (data of product; track $index) {
+          <div class="bg-white rounded-lg shadow-lg p-8 ">
+              <div class="relative overflow-hidden content">
+                  <div style="height: 350px;">
+                    <img class="object-cover w-full h-full scale-75" ngSrc="{{ data.pro_img }}" disableOptimizedSrcset width="300" height="700" alt="Product" priority>
+
+                  </div>
+                  <div class="hoverblackdrop absolute inset-0 bg-black opacity-40"></div>
+                  <div class="absolute inset-0 flex items-center justify-center divImg">
+                      <button id="btn-view" class="bg-white  text-gray-900 py-2 px-6 rounded-full font-bold hover:bg-gray-300 transform motion-safe:hover:scale-110" (click)="GotoDetail(data.id)">View Product</button>
+                  </div>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mt-4">{{ data.pro_name }}</h3>
+              <p class="text-gray-500 text-sm mt-2">{{ data.pro_detail }}</p>
+              <div class="flex items-center justify-between mt-4">
+                  <span class="text-gray-900 font-bold text-lg">@if(data.pro_sale !== 0) {
+                      <del class="text-red-500 text-sm">฿ {{ data.pro_price }}</del>
+                      <br>
+                      ฿ {{ sum_sale(data.pro_price, data.pro_sale) }}
+                  }@else {
+                    ฿ {{ sum_sale(data.pro_price, data.pro_sale) }}
+                  }
+                  </span>
+                  <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 transform motion-safe:focus:scale-75" (click)="add_cart(data.id)">Add to Cart</button>
+              </div>
+          </div>
+        }
+          
+      </div>
+
+  </div>
+ 
+  
+  
+
+<nav aria-label="Page navigation example" class="flex justify-center me-20 mt-12">
+  <ul class="flex items-end -space-x-px h-8 text-lg ">
+    @if(page <= 1) {
+      <li>
+        <button [disabled]="true" class="flex items-center justify-end px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg  dark:bg-gray-100 dark:border-gray-500  dark:text-gray-400  disabled:bg-gray-200 disabled:hover:bg-none">
+          <span class="sr-only">Previous</span>
+          <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+          </svg>
+        </button>
+      </li>
+    }@else {
+      <li>
+        <button (click)="previous()" class="flex items-center justify-end px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-100 dark:border-gray-500  dark:text-gray-400 dark:hover:bg-gray-500 dark:hover:text-white">
+          <span class="sr-only">Previous</span>
+          <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+          </svg>
+        </button>
+      </li>
+    }
+    @if(activePage === 1) {
+      <li>
+        <button  disabled class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-gray-500 border border-gray-300    dark:border-gray-500 ">1</button>
+      </li>
+    }@else {
+      <li>
+        <a href="/user/All/" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-100 dark:border-gray-500 dark:text-gray-400 dark:hover:bg-gray-500 dark:hover:text-white">1</a>
+      </li>
+    }
+    @if(totalPages > 1) {
+      @for (pages of pageNumbers; track $index) {
+        @if (pages > 1) {
+          @if(activePage === pages) {
+            <li>
+              <button  disabled class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-gray-500 border border-gray-300    dark:border-gray-500 ">{{ pages }}</button>
+            </li>
+          }@else {
+            <li>
+              <a href="/user/All/{{ pages }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-100 dark:border-gray-500 dark:text-gray-400 dark:hover:bg-gray-500 dark:hover:text-white">{{ pages }}</a>
+            </li>
+          }
+         
+        
+        }
+    }
+    }
+    
+    @if(page >= totalPages) {
+      <li>
+        <button [disabled]="true" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg  dark:bg-gray-100 dark:border-gray-500  dark:text-gray-400  disabled:bg-gray-200 disabled:hover:bg-none">
+          <span class="sr-only">Next</span>
+          <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+          </svg>
+        </button>
+      </li>
+    }@else {
+    <li>
+      <button (click)="next()" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-100 dark:border-gray-500 dark:text-gray-400 dark:hover:bg-gray-500 dark:hover:text-white">
+        <span class="sr-only">Next</span>
+        <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+        </svg>
+      </button>
+    </li>
+  }
+  </ul>
+</nav>  
+</div>

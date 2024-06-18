@@ -1,0 +1,35 @@
+
+<div class="flex flex-col drop-shadow-lg ml-80 mr-24 sm:max-sm:mt-10 md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-48">
+    <!-- component -->
+    <div class=" p-6 flex items-center justify-center">
+        <div class="container max-w-screen-lg mx-auto">
+          <div>
+    
+            <div class="bg-white rounded shadow-lg  px-4 md:p-8 mb-6 ">
+              
+                    <h1 class="text-center text-2xl pb-5"> {{title}} </h1>
+                    <form  (ngSubmit)="editCategory(frm_category.value)" #frm_category="ngForm" method="post" enctype="multipart/form-data">
+                <div class="lg:col-span-2">
+                  <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                    <div class="md:col-span-5">
+                      <label for="c_name">หมวดหมู่สินค้า</label>
+                      <input type="text" name="c_name" id="c_name" [(ngModel)]="data.c_name"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Category Name" />
+                    </div>
+                    <div class="md:col-span-5">
+                      <label for="description">รายละเอียด</label>
+                      <input type="text" name="description" id="description" [(ngModel)]="data.description"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="Description" />
+                    </div>
+                    <div class="md:col-span-5 text-right">
+                      <div class="inline-flex items-end">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div>
+      

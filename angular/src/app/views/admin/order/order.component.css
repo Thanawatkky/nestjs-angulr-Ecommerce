@@ -1,0 +1,6 @@
+#showImageOrder{
+    visibility: hidden;
+}
+#showProductName:hover ~ #showImageOrder{
+    visibility: visible;
+}
